@@ -1,0 +1,19 @@
+How to create Date Table in Power BI:
+
+Date Table = 
+var a=MIN('Bank data'[Date Joined])
+var b=MAX('Bank data'[Date Joined])
+var c= CALENDAR(a,b)
+var d=ADDCOLUMNS(c,
+"Year",YEAR([Date]),
+"Quarter Name",FORMAT([Date],"\QQ"),
+"Quarter Number",QUARTER([Date]),
+"Month Name",FORMAT([Date],"MMM"),
+"Month Number",MONTH([Date]),
+"Month Year",FORMAT([Date],"MMM YYYY"),
+"Month year sort",VALUE(FORMAT([Date],"yyyymm")),
+"Week Name","W" & WEEKNUM([Date]),
+"Day Name",FORMAT([Date],"DDDD"),
+"Day Number",WEEKDAY([Date]),
+"Day",DAY([Date]))
+RETURN d
